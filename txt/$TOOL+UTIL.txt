@@ -1,0 +1,65 @@
+package util;
+
+import hudson.FilePath;
+import hudson.Launcher;
+import hudson.model.TaskListener;
+
+import java.io.*;
+
+public class $TOOL+UTIL {
+
+    /**
+     * Help method to launch commands to cmd
+     * @param pwd - the dir that the command is running in
+     * @param command - the command itself
+     * @param launcher
+     * @param listener
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public void toCmd(String pwd, String command, Launcher launcher, TaskListener listener)
+            throws IOException, InterruptedException{
+        Launcher.ProcStarter starter = launcher.launch().cmds(command.split(" "));
+        int exit = starter.pwd(pwd).stdout(listener).join();
+        if(exit!=0) listener.getLogger().println("Exit code is " + exit);
+    }
+    /**
+     * Help method to launch commands to cmd
+     * @param pwd - the dir that the command is running in
+     * @param command - the command itself
+     * @param launcher
+     * @param listener
+     * @param context
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public void toCmd(String pwd, String command, Launcher launcher, TaskListener listener, SimpleBuildWrapper.Context context)
+            throws IOException, InterruptedException{
+        Launcher.ProcStarter starter = launcher.launch().cmds(command.split(" "));
+        int exit = starter.pwd(pwd).envs(context.getEnv()).stdout(listener).join();
+        if(exit!=0) listener.getLogger().println("Exit code is " + exit);
+    }
+
+    /**
+     * Create files 
+     * @param content
+     * @param path
+     * @param name
+     * @throws IOException
+     */
+    public void createFile(String content, String path, String name) throws IOException{
+        if(content == null) return;
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+        writer.write(content+"\n");
+        writer.close();
+    }
+
+    /**
+     * Help method to print to log
+     * @param listener
+     * @param msg
+     */
+    private void print(TaskListener listener,String msg){
+        listener.getLogger().println(msg);
+    }
+}

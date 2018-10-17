@@ -1,0 +1,62 @@
+package Installation;
+
+import edu.umd.cs.findbugs.annotations.NonNull;
+import hudson.EnvVars;
+import hudson.Extension;
+import hudson.model.EnvironmentSpecific;
+import hudson.model.Node;
+import hudson.model.TaskListener;
+import hudson.slaves.NodeSpecific;
+import hudson.tools.ToolDescriptor;
+import hudson.tools.ToolInstallation;
+import hudson.tools.ToolProperty;
+import org.kohsuke.stapler.DataBoundConstructor;
+
+import java.io.IOException;
+import java.util.List;
+
+/**
+ * @author Aviel
+ */
+public class $TOOL+INSTALLATION extends ToolInstallation
+        implements NodeSpecific<$TOOL+INSTALLATION>, EnvironmentSpecific<$TOOL+INSTALLATION> {
+
+    @DataBoundConstructor
+    public $TOOL+INSTALLATION(String name, String home, List<? extends ToolProperty<?>> properties) {
+        super(name, home, properties);
+    }
+
+    @Override
+    public $TOOL+INSTALLATION forEnvironment(EnvVars envVars) {
+        return new $TOOL+INSTALLATION(getName(),envVars.expand(getHome()),getProperties().toList());
+    }
+
+    @Override
+    public $TOOL+INSTALLATION forNode(@NonNull Node node, TaskListener taskListener) throws IOException, InterruptedException {
+        return new $TOOL+INSTALLATION(getName(),translateFor(node,taskListener),getProperties().toList());
+    }
+
+    @Override
+    public void buildEnvVars(EnvVars env) {
+        env.put("$TOOL+NAME_HOME",getHome());
+        env.put("PATH+$TOOL+NAME", getHome() + "/bin");
+    }
+
+    @Extension
+    public static class DescriptorImpl extends ToolDescriptor<$TOOL+INSTALLATION> {
+        public DescriptorImpl() {
+            load();
+        }
+
+        @Override
+        public String getDisplayName() {
+            return "$TOOL+NAME"; //TODO
+        }
+
+        @Override
+        public void setInstallations($TOOL+INSTALLATION... installations) {
+            super.setInstallations(installations);
+            save();
+        }
+    }
+}

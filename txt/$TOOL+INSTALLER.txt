@@ -1,0 +1,60 @@
+package Installation;
+
+import hudson.Extension;
+import hudson.FilePath;
+import hudson.Launcher;
+import hudson.model.Node;
+import hudson.model.TaskListener;
+import hudson.tools.ToolInstallation;
+import hudson.tools.ToolInstaller;
+import hudson.tools.ToolInstallerDescriptor;
+import org.kohsuke.stapler.DataBoundConstructor;
+
+import java.io.IOException;
+import java.net.URL;
+
+/**
+ * @author Aviel
+ */
+public class $TOOL+INSTALLER extends ToolInstaller {
+    @DataBoundConstructor
+    public $TOOL+INSTALLER(String label) {
+        super(label);
+    }
+
+    @Override
+    public FilePath performInstallation(ToolInstallation tool, Node node, TaskListener listener)
+            throws IOException, InterruptedException {
+        FilePath install = preferredLocation(tool, node);
+        //TODO
+        return install;
+    }
+
+    /**
+     * Help method used to install required packages
+     * @param listener - to generate logs
+     * @param install - where the package will be installed
+     * @param path - path to download from
+     * @param msg - message to log
+     * @throws IOException
+     * @throws InterruptedException
+     * @deprecated
+     */
+    private void installIfnecessaryFromURL(TaskListener listener,FilePath install,String msg,String path)
+            throws IOException, InterruptedException {
+        URL link = new URL(path);
+        install.installIfNecessaryFrom(link,listener,msg);
+    }
+
+
+    @Extension
+    public static class DescriptorImpl extends ToolInstallerDescriptor<$TOOL+INSTALLER>{
+        @Override
+        public String getDisplayName() { return ""; }//TODO
+
+        @Override
+        public boolean isApplicable(Class<? extends ToolInstallation> toolType) {
+            return toolType == linchPinTool.class;
+        }
+    }
+}
