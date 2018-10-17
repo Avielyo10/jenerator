@@ -1,4 +1,14 @@
 # Jenkins Plugin Generator
 
 ## Usage
-> `python jenkinsPluginGen.py (--The Tool's Name--)`
+<pre>
+jenkinsPluginGen --name (toolName) [options ...]  
+--name       :the tool name  
+-A           :make it all - used by default  
+-B           :make Builder  
+-I           :make Installation  
+-P           :make Publisher  
+-U           :make Util  
+-W           :make Wrapper  
+-h, --help   :call help and exit  
+</p>
