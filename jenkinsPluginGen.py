@@ -79,7 +79,7 @@ def main():
     else:
         exit("Need to enter a vaild name - exiting now")
 
-    selected = raw_input("Generate: \n[1] Tool Simple Installer\n[2] Tool Installation\n[3] Simple Wrapper\n[4] Build Step\n[5] Post-Build Action\n[6] Utility\n[7] All\n")
+    selected = raw_input("Generate: \n[1] Tool Simple Installer\n[2] Tool Installation\n[3] Simple Wrapper\n[4] Build Step\n[5] Post-Build Action\n[6] Utility\n[7] All\n[8] Exit\n")
 
 
     if selected == '1':
@@ -101,6 +101,10 @@ def main():
         toolBuilder(pluginName)
         toolPublisher(pluginName)
         toolUtil(pluginName)
+    elif selected == '8':
+        if len(os.listdir(pluginName)) == 0:
+            os.rmdir(pluginName)
+        exit("Bye :)")
     else:
         exit("Not in the range 1-7 - exiting now")
 
