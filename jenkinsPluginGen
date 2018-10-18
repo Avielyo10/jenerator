@@ -2,23 +2,23 @@
 import os,sys
 def createDir(dirName):
     try:
-        os.mkdir(dirName)
+        os.mkdir(os.getcwd()+"/"+dirName)
     except:
-        print("Directory "+dirName+" already exists")
+        print("Directory "+os.getcwd()+"/"+dirName+" already exists")
 
 
 def toolInstaller(toolName):
     createDir(toolName+"/Installation")
-    with open("txt/$TOOL+INSTALLER.txt", "rt") as txtInstaller:
-        with open(toolName+"/Installation/"+toolName+'Installer.java', "wt") as javaInstaller:
+    with open("/usr/local/lib/jenkinsPluginGen files/$TOOL+INSTALLER.txt", "rt") as txtInstaller:
+        with open(os.getcwd()+"/"+toolName+"/Installation/"+toolName+'Installer.java', "wt") as javaInstaller:
             for line in txtInstaller:
                 javaInstaller.write(line.replace('$TOOL+INSTALLER', toolName+'Installer'))
 
 
 def toolInstallation(toolName):
     toolInstaller(toolName)
-    with open("txt/$TOOL+INSTALLATION.txt", "rt") as txtInstallation:
-        with open(toolName+"/Installation/"+toolName+'Tool.java', "wt") as javaInstallation:
+    with open("/usr/local/lib/jenkinsPluginGen files/$TOOL+INSTALLATION.txt", "rt") as txtInstallation:
+        with open(os.getcwd()+"/"+toolName+"/Installation/"+toolName+'Tool.java', "wt") as javaInstallation:
             for line in txtInstallation:
                 if '$TOOL+NAME' in line:
                     javaInstallation.write(line.replace('$TOOL+NAME', toolName))
@@ -28,15 +28,15 @@ def toolInstallation(toolName):
             
 def toolUtil(toolName):
     createDir(toolName+"/util")
-    with open("txt/$TOOL+UTIL.txt", "rt") as txtUtil:
-        with open(toolName+"/util/"+toolName+'Util.java', "wt") as javaUtil:
+    with open("/usr/local/lib/jenkinsPluginGen files/$TOOL+UTIL.txt", "rt") as txtUtil:
+        with open(os.getcwd()+"/"+toolName+"/util/"+toolName+'Util.java', "wt") as javaUtil:
             for line in txtUtil:
                 javaUtil.write(line.replace('$TOOL+UTIL', toolName+'Util'))
 
 
 def toolBuilder(toolName):
-    with open("txt/$TOOL+BUILDER.txt", "rt") as txtBuilder:
-        with open(toolName+"/"+toolName+'Builder.java', "wt") as javaBuilder:
+    with open("/usr/local/lib/jenkinsPluginGen files/$TOOL+BUILDER.txt", "rt") as txtBuilder:
+        with open(os.getcwd()+"/"+toolName+"/"+toolName+'Builder.java', "wt") as javaBuilder:
             for line in txtBuilder:
                 if "$TOOL+UTIL" in line:
                     javaBuilder.write(line.replace('$TOOL+UTIL', toolName+'Util')) 
@@ -45,8 +45,8 @@ def toolBuilder(toolName):
 
 
 def toolWrapper(toolName):
-    with open("txt/$TOOL+WRAPPER.txt", "rt") as txtWrapper:
-        with open(toolName+"/"+toolName+'Wrapper.java', "wt") as javaWrapper:
+    with open("/usr/local/lib/jenkinsPluginGen files/$TOOL+WRAPPER.txt", "rt") as txtWrapper:
+        with open(os.getcwd()+"/"+toolName+"/"+toolName+'Wrapper.java', "wt") as javaWrapper:
             for line in txtWrapper:
                 if "$TOOL+INSTALLATION" in line:
                     javaWrapper.write(line.replace('$TOOL+INSTALLATION',toolName+'Tool'))
@@ -57,8 +57,8 @@ def toolWrapper(toolName):
 
 
 def toolPublisher(toolName):
-    with open("txt/$TOOL+PUBLISHER.txt", "rt") as txtPublisher:
-        with open(toolName+"/"+toolName+'Publisher.java', "wt") as javaPublisher:
+    with open("/usr/local/lib/jenkinsPluginGen files/$TOOL+PUBLISHER.txt", "rt") as txtPublisher:
+        with open(os.getcwd()+"/"+toolName+"/"+toolName+'Publisher.java', "wt") as javaPublisher:
             for line in txtPublisher:
                 javaPublisher.write(line.replace('$TOOL+PUBLISHER', toolName+'Publisher'))            
 
@@ -73,16 +73,16 @@ def all(toolName):
 def help():
     print "usage: jenkinsPluginGen --name (toolName) [options ...]"
     print "--name       :the tool name"
-    print "-A           :make it all - used by default"
-    print "-B           :make Builder"
-    print "-I           :make Installation"
-    print "-P           :make Publisher"
-    print "-U           :make Util"
-    print "-W           :make Wrapper"
+    print "-a           :creates it all - used by default"
+    print "-b           :creates build step"
+    print "-i           :creates tool-installation & installer"
+    print "-p           :creates post-build action"
+    print "-u           :creates utility class with helpful methods"
+    print "-w           :creates wrapper - build environment"
     print "-h, --help   :call help and exit"
 
 def checkArgv(argv,toolName):
-    commandsAndToolName = ["jenkinsPluginGen","./jenkinsPluginGen","-h","--help","--name","-A","-B","-I","-P","-U","-W",toolName]
+    commandsAndToolName = [__file__,"-h","--help","--name","-a","-b","-i","-p","-u","-w",toolName]
     for i in argv:
         if i not in commandsAndToolName:
             print i + " - command not found."
@@ -122,22 +122,22 @@ def main():
     if len(sys.argv) == 3:
         all(pluginName)
 
-    if "-A" in sys.argv:
+    if "-a" in sys.argv:
         all(pluginName)
     
-    if "-B" in sys.argv:
+    if "-b" in sys.argv:
         toolBuilder(pluginName)
     
-    if "-I" in sys.argv:
+    if "-i" in sys.argv:
         toolInstallation(pluginName)
 
-    if "-P" in sys.argv:
+    if "-p" in sys.argv:
         toolPublisher(pluginName)
 
-    if "-U" in sys.argv:
+    if "-u" in sys.argv:
         toolUtil(pluginName)
 
-    if "-W" in sys.argv:
+    if "-w" in sys.argv:
         toolWrapper(pluginName)
     
     if "-h" in sys.argv or "--help" in sys.argv:

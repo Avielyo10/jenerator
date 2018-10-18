@@ -4,11 +4,11 @@
 <pre>
 jenkinsPluginGen --name (toolName) [options ...]  
 --name       :the tool name  
--A           :make it all - used by default  
--B           :make Builder  
--I           :make Installation  
--P           :make Publisher  
--U           :make Util  
--W           :make Wrapper  
+-a           :creates it all - used by default  
+-b           :creates build step 
+-i           :creates tool-installation & installer   
+-p           :creates post-build action  
+-u           :creates utility class with helpful methods   
+-w           :creates wrapper - build environment  
 -h, --help   :call help and exit  
 </p>
