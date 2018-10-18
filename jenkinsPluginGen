@@ -9,7 +9,7 @@ def createDir(dirName):
 
 def toolInstaller(toolName):
     createDir(toolName+"/Installation")
-    with open("/usr/local/lib/jenkinsPluginGen files/$TOOL+INSTALLER.txt", "rt") as txtInstaller:
+    with open(os.path.abspath("/usr/local/lib/jenkinsPluginGenFiles/")+"$TOOL+INSTALLER.txt", "rt") as txtInstaller:
         with open(os.getcwd()+"/"+toolName+"/Installation/"+toolName+'Installer.java', "wt") as javaInstaller:
             for line in txtInstaller:
                 javaInstaller.write(line.replace('$TOOL+INSTALLER', toolName+'Installer'))
@@ -17,7 +17,7 @@ def toolInstaller(toolName):
 
 def toolInstallation(toolName):
     toolInstaller(toolName)
-    with open("/usr/local/lib/jenkinsPluginGen files/$TOOL+INSTALLATION.txt", "rt") as txtInstallation:
+    with open(os.path.abspath("/usr/local/lib/jenkinsPluginGenFiles/")+"$TOOL+INSTALLATION.txt", "rt") as txtInstallation:
         with open(os.getcwd()+"/"+toolName+"/Installation/"+toolName+'Tool.java', "wt") as javaInstallation:
             for line in txtInstallation:
                 if '$TOOL+NAME' in line:
@@ -28,14 +28,14 @@ def toolInstallation(toolName):
             
 def toolUtil(toolName):
     createDir(toolName+"/util")
-    with open("/usr/local/lib/jenkinsPluginGen files/$TOOL+UTIL.txt", "rt") as txtUtil:
+    with open(os.path.abspath("/usr/local/lib/jenkinsPluginGenFiles/")+"$TOOL+UTIL.txt", "rt") as txtUtil:
         with open(os.getcwd()+"/"+toolName+"/util/"+toolName+'Util.java', "wt") as javaUtil:
             for line in txtUtil:
                 javaUtil.write(line.replace('$TOOL+UTIL', toolName+'Util'))
 
 
 def toolBuilder(toolName):
-    with open("/usr/local/lib/jenkinsPluginGen files/$TOOL+BUILDER.txt", "rt") as txtBuilder:
+    with open(os.path.abspath("/usr/local/lib/jenkinsPluginGenFiles/")+"$TOOL+BUILDER.txt", "rt") as txtBuilder:
         with open(os.getcwd()+"/"+toolName+"/"+toolName+'Builder.java', "wt") as javaBuilder:
             for line in txtBuilder:
                 if "$TOOL+UTIL" in line:
@@ -45,7 +45,7 @@ def toolBuilder(toolName):
 
 
 def toolWrapper(toolName):
-    with open("/usr/local/lib/jenkinsPluginGen files/$TOOL+WRAPPER.txt", "rt") as txtWrapper:
+    with open(os.path.abspath("/usr/local/lib/jenkinsPluginGenFiles/")+"$TOOL+WRAPPER.txt", "rt") as txtWrapper:
         with open(os.getcwd()+"/"+toolName+"/"+toolName+'Wrapper.java', "wt") as javaWrapper:
             for line in txtWrapper:
                 if "$TOOL+INSTALLATION" in line:
@@ -57,7 +57,7 @@ def toolWrapper(toolName):
 
 
 def toolPublisher(toolName):
-    with open("/usr/local/lib/jenkinsPluginGen files/$TOOL+PUBLISHER.txt", "rt") as txtPublisher:
+    with open(os.path.abspath("/usr/local/lib/jenkinsPluginGenFiles/")+"$TOOL+PUBLISHER.txt", "rt") as txtPublisher:
         with open(os.getcwd()+"/"+toolName+"/"+toolName+'Publisher.java', "wt") as javaPublisher:
             for line in txtPublisher:
                 javaPublisher.write(line.replace('$TOOL+PUBLISHER', toolName+'Publisher'))            
@@ -119,7 +119,7 @@ def main():
         createDir(pluginName) 
     else:
         exit("Need to enter a vaild name - exiting now")
-    
+
     if len(sys.argv) == 3:
         all(pluginName)
 
