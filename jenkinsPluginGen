@@ -72,15 +72,15 @@ def all(toolName):
 
 def help():
     print "usage: jenkinsPluginGen --name (toolName) [options ...]"
-    print "--name       :the tool name\n"
+    print "     --name       :the tool name"
     print "options:"
-    print "-a           :creates it all - used by default"
-    print "-b           :creates build step"
-    print "-i           :creates tool-installation & installer"
-    print "-p           :creates post-build action"
-    print "-u           :creates utility class with helpful methods"
-    print "-w           :creates wrapper - build environment"
-    print "-h, --help   :call help and exit"
+    print "     -a           :creates it all - used by default"
+    print "     -b           :creates build step"
+    print "     -i           :creates tool-installation & installer"
+    print "     -p           :creates post-build action"
+    print "     -u           :creates utility class with helpful methods"
+    print "     -w           :creates wrapper - build environment"
+    print "     -h, --help   :call help and exit"
 
 def checkArgv(argv,toolName):
     commandsAndToolName = [__file__,"-h","--help","--name","-a","-b","-i","-p","-u","-w",toolName]
