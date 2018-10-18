@@ -1,4 +1,7 @@
 # Jenkins Plugin Generator
+![](https://img.shields.io/badge/version-1.0-blue.svg)
+![](https://img.shields.io/badge/license-Apache--2.0-brightgreen.svg)
+![](https://img.shields.io/badge/requirements-python-red.svg)
 
 ## Usage
 <pre>
