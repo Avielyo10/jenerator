@@ -71,7 +71,7 @@ def all(toolName):
     toolUtil(toolName)
 
 def help():
-    print "usage: jenkinsPluginGen --name (toolName) [options ...]"
+    print "usage: jenkinsPluginGen {--name} [options ...]"
     print "     --name       :the tool name"
     print "options:"
     print "     -a           :creates it all - used by default"
