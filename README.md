@@ -5,7 +5,7 @@
 
 ## Usage
 <pre>
-usage: jen {--name} [options ...] 
+usage: jenerator {--name} [options ...] 
     --name       :the tool's name
 options:    
     -a           :creates it all - used by default  
