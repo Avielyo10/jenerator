@@ -25,7 +25,7 @@ def toolInstallation(toolName):
                 else:
                     javaInstallation.write(line.replace('$TOOL+INSTALLATION',toolName+'Tool'))     
     
-            
+
 def toolUtil(toolName):
     createDir(toolName+"/util")
     with open(os.path.abspath("/usr/local/lib/jenkinsPluginGenFiles/")+"/$TOOL+UTIL.txt", "rt") as txtUtil:
