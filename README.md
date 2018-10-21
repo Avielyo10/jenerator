@@ -5,7 +5,7 @@
 
 ## Usage
 <pre>
-jenkinsPluginGen {--name} [options ...] 
+usage: jen {--name} [options ...] 
     --name       :the tool's name
 options:    
     -a           :creates it all - used by default  
