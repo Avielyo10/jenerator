@@ -47,7 +47,7 @@ public class $TOOL+INSTALLER extends ToolInstaller {
     }
 
 
-    @Extension
+    @Extension @Symbol("") //TODO
     public static class DescriptorImpl extends ToolInstallerDescriptor<$TOOL+INSTALLER>{
         @Override
         public String getDisplayName() { return ""; }//TODO

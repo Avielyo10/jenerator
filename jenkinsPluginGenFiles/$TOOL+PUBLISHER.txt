@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * @author Aviel
  */
-public class $TOOL+PUBLISHER extends Publisher {
+public class $TOOL+PUBLISHER extends Publisher implements SimpleBuildStep {
 
     @DataBoundConstructor
     public $TOOL+PUBLISHER() {}
@@ -24,15 +24,12 @@ public class $TOOL+PUBLISHER extends Publisher {
         return BuildStepMonitor.NONE;
     }
 
-    @Override
-    public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener)
-            throws InterruptedException, IOException {
-        
-        return true;
-    }
+   @Override
+    public void perform(@Nonnull Run<?, ?> run, @Nonnull FilePath workspace, @Nonnull Launcher launcher, @Nonnull TaskListener listener)
+     throws InterruptedException, IOException { }
 
 
-    @Extension
+    @Extension @Symbol("") //TODO
     public static class DescriptorImp extends BuildStepDescriptor<Publisher> {
 
         @Override

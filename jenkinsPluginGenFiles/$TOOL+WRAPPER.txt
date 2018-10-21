@@ -83,7 +83,7 @@ public class $TOOL+WRAPPER extends SimpleBuildWrapper {
             }
         }
     }
-    @Extension
+    @Extension @Symbol("") //TODO
     public static class DescriptorImpl extends BuildWrapperDescriptor{
 
         public DescriptorImpl() {

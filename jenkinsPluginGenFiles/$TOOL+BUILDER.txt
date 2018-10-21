@@ -22,12 +22,8 @@ public class $TOOL+BUILDER extends Builder implements SimpleBuildStep {
     public void perform(@Nonnull Run<?, ?> run, @Nonnull FilePath filePath, @Nonnull Launcher launcher, @Nonnull TaskListener listener)
             throws InterruptedException, IOException {}
 
-    @Override
-    public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener) throws InterruptedException, IOException {
-        return true;
-    }
 
-    @Extension
+    @Extension @Symbol("") //TODO
     public static final class DescriptorImpl extends BuildStepDescriptor<Builder> {
         @Override
         public String getDisplayName() { return ""; }//TODO
