@@ -2,12 +2,13 @@
 import os
 from . import util
 
-ABS_PATH = os.path.abspath("jeneratorFiles/")+"/"
 CWD = os.getcwd()+"/"
 
 
 def replace_and_write(tool_name, src_path, dest_path, old_word, new_word):
-    with open(ABS_PATH + src_path, "rt") as txt:
+    this_dir, this_filename = os.path.split(__file__)
+    DATA_FILE = os.path.join(this_dir, "files", src_path)
+    with open(DATA_FILE, "rt") as txt:
         with open(dest_path, "wt") as java:
             for line in txt:
                 java.write(line.replace(
@@ -15,7 +16,9 @@ def replace_and_write(tool_name, src_path, dest_path, old_word, new_word):
 
 
 def replace_and_write2(tool_name, src_path, dest_path, old_word1, new_word1, old_word2, new_word2):
-    with open(ABS_PATH + src_path, "rt") as txt:
+    this_dir, this_filename = os.path.split(__file__)
+    DATA_FILE = os.path.join(this_dir, "files", src_path)
+    with open(DATA_FILE, "rt") as txt:
         with open(dest_path, "wt") as java:
             for line in txt:
                 if old_word1 in line:
