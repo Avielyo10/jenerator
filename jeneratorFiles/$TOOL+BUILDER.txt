@@ -6,7 +6,6 @@ import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Builder;
 import jenkins.tasks.SimpleBuildStep;
 import org.kohsuke.stapler.DataBoundConstructor;
-import util.$TOOL+UTIL;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
