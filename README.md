@@ -13,6 +13,8 @@
 
 4. `pip install git+https://github.com/Avielyo10/jenerator`
 
+5. `source jenerator-complete.sh`
+
 # Usage
 <pre>
 Usage: jenerator [OPTIONS] COMMAND [ARGS]...
