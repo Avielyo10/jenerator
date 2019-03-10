@@ -13,7 +13,7 @@
 
 4. `pip install git+https://github.com/Avielyo10/jenerator`
 
-5. `source jenerator-complete.sh`
+5. Add `eval "$(_JENERATOR_COMPLETE=source jenerator)"` to `.bashrc` file.
 
 # Usage
 <pre>
