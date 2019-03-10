@@ -5,13 +5,13 @@
 
 # Installation
 
-1. `pip install virtualenvwrapper`
+1. `pip install virtualenvwrapper`.
 
-2. `mkvirtualenv -p python3 venv`
+2. `mkvirtualenv -p python3 venv`.
 
-3. `workon venv`
+3. `workon venv`.
 
-4. `pip install git+https://github.com/Avielyo10/jenerator`
+4. `pip install git+https://github.com/Avielyo10/jenerator`.
 
 5. Add `eval "$(_JENERATOR_COMPLETE=source jenerator)"` to `.bashrc` file.
 

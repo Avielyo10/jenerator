@@ -6,7 +6,7 @@ CWD = os.getcwd()+"/"
 
 
 def replace_and_write(tool_name, src_path, dest_path, old_word, new_word):
-    this_dir, this_filename = os.path.split(__file__)
+    this_dir = os.path.split(__file__)[0]
     DATA_FILE = os.path.join(this_dir, "files", src_path)
     with open(DATA_FILE, "rt") as txt:
         with open(dest_path, "wt") as java:
@@ -16,7 +16,7 @@ def replace_and_write(tool_name, src_path, dest_path, old_word, new_word):
 
 
 def replace_and_write2(tool_name, src_path, dest_path, old_word1, new_word1, old_word2, new_word2):
-    this_dir, this_filename = os.path.split(__file__)
+    this_dir = os.path.split(__file__)[0]
     DATA_FILE = os.path.join(this_dir, "files", src_path)
     with open(DATA_FILE, "rt") as txt:
         with open(dest_path, "wt") as java:
